@@ -1,0 +1,289 @@
+Phase 1: Project Setup
+GitHub
+✅ Created CampusOS GitHub repository
+✅ Connected local project to GitHub
+✅ Multi-module Maven project pushed
+✅ Phase 2: Backend Structure
+
+Created parent Maven project:
+
+backend
+│
+├── pom.xml
+│
+├── common-lib
+├── config-server
+├── service-registry
+├── api-gateway
+├── auth-service
+├── tenant-service
+├── user-service
+├── academic-service
+├── attendance-service
+├── fee-service
+└── notification-service
+Status
+✅ Parent POM
+✅ Child modules
+✅ Git Connected
+✅ Maven Reactor Working
+✅ Phase 3: common-lib
+
+Created package structure
+
+common-lib
+│
+├── annotation
+├── config
+├── constants
+├── dto
+│   ├── request
+│   └── response
+├── entity
+├── enums
+├── exception
+├── mapper
+├── response
+├── security
+├── util
+└── validation
+Classes created
+Entity
+BaseEntity
+
+Contains
+
+createdAt
+updatedAt
+Response
+ApiResponse<T>
+
+Standard API response.
+
+Exception
+ErrorCode
+BusinessException
+ResourceNotFoundException
+Constants
+AppConstants
+Validation
+
+Created
+
+StrongPassword
+StrongPasswordValidator
+✅ Phase 4: Connected common-lib
+
+Added dependency to
+
+auth-service
+tenant-service
+user-service
+academic-service
+attendance-service
+fee-service
+notification-service
+✅ Phase 5: Auth Service
+
+Created packages
+
+config
+
+controller
+
+dto
+
+entity
+
+repository
+
+security
+
+service
+
+util
+Entities
+
+Created
+
+User
+
+Role
+
+RefreshToken
+
+User extends
+
+BaseEntity
+Repositories
+
+Created
+
+UserRepository
+
+RoleRepository
+
+RefreshTokenRepository
+DTOs
+
+Created
+
+LoginRequest
+
+RegisterRequest   ❌ Remove later
+
+RefreshTokenRequest
+
+AuthResponse
+
+UserResponse
+✅ Phase 6: Spring Security
+
+Created
+
+SecurityConfig
+
+Configured
+
+PasswordEncoder
+AuthenticationManager
+Stateless Session
+CSRF Disabled
+Permit auth endpoints
+Secure remaining APIs
+✅ Phase 7: JWT
+
+Created
+
+JwtService
+
+Supports
+
+Generate Token
+
+Extract Username
+
+Extract UserId
+
+Extract TenantId
+
+Extract Display Name
+
+Extract Roles
+
+Validate Token
+
+JWT contains
+
+userId
+
+tenantId
+
+username
+
+roles
+
+email
+
+exp
+
+iat
+✅ Phase 8: Security Pipeline
+
+Created
+
+UserPrincipal
+
+Implements
+
+UserDetails
+
+Created
+
+CustomUserDetailsService
+
+Loads user using email.
+
+Created
+
+JwtAuthenticationFilter
+
+Flow
+
+Extract JWT
+
+↓
+
+Validate
+
+↓
+
+Load User
+
+↓
+
+SecurityContext
+
+Created
+
+JwtAuthenticationEntryPoint
+
+Returns JSON
+
+instead of HTML login page.
+
+Updated
+
+SecurityConfig
+
+Added
+
+Jwt Filter
+AuthenticationEntryPoint
+❌ Not Yet Implemented
+
+Service layer
+
+AuthServiceImpl
+
+Methods pending
+
+login()
+
+logout()
+
+refreshToken()
+
+changePassword()
+
+Controller
+
+AuthController
+
+Not created.
+
+Password Reset
+
+Not created.
+
+Forgot Password
+
+Not created.
+
+🔄 Changes After Product Discussion
+Remove
+RegisterRequest
+
+register()
+
+POST /auth/register
+
+Reason
+
+No public registration.
+
+Keep
+
+Everything else.
+
+Nothing else needs changing.
